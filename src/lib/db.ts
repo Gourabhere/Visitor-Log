@@ -35,6 +35,12 @@ export const db = {
     logs.push(log);
     await set('logs', logs);
   },
+  async deleteVisitor(id: string): Promise<void> {
+    const visitors = await this.getVisitors();
+    await set('visitors', visitors.filter(v => v.id !== id));
+    const logs = await this.getLogs();
+    await set('logs', logs.filter(l => l.visitorId !== id));
+  },
   async getVisitorById(id: string): Promise<Visitor | undefined> {
     const visitors = await this.getVisitors();
     return visitors.find((v) => v.id === id);

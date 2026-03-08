@@ -11,6 +11,7 @@ export default function Scanner() {
   const [scanResult, setScanResult] = useState<{ type: 'MATCH' | 'NO_MATCH' | 'ERROR', visitor?: Visitor, message?: string } | null>(null);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [capturedDescriptor, setCapturedDescriptor] = useState<Float32Array | null>(null);
+  const [successMessage, setSuccessMessage] = useState('');
   
   // Registration Form State
   const [name, setName] = useState('');
@@ -87,8 +88,10 @@ export default function Scanner() {
     };
     
     await db.saveLog(log);
+    const msg = `Successfully checked ${type.toLowerCase()} ${scanResult.visitor.name}`;
     resetScanner();
-    alert(`Successfully checked ${type.toLowerCase()} ${scanResult.visitor.name}`);
+    setSuccessMessage(msg);
+    setTimeout(() => setSuccessMessage(''), 3000);
   };
 
   const handleRegister = async (e: React.FormEvent) => {
@@ -117,8 +120,10 @@ export default function Scanner() {
     };
     await db.saveLog(log);
     
+    const msg = `Registered and checked in ${name}`;
     resetScanner();
-    alert(`Registered and checked in ${name}`);
+    setSuccessMessage(msg);
+    setTimeout(() => setSuccessMessage(''), 3000);
   };
 
   const resetScanner = () => {
@@ -141,7 +146,14 @@ export default function Scanner() {
   }
 
   return (
-    <div className="p-4 flex flex-col h-full max-w-md mx-auto">
+    <div className="p-4 flex flex-col h-full max-w-md mx-auto relative">
+      {successMessage && (
+        <div className="absolute top-4 left-4 right-4 bg-emerald-600 text-white p-4 rounded-2xl shadow-lg z-50 flex items-center space-x-3">
+          <CheckCircle2 className="w-5 h-5" />
+          <p className="font-medium text-sm">{successMessage}</p>
+        </div>
+      )}
+
       {!scanResult && !capturedImage ? (
         <div className="flex-1 flex flex-col space-y-6">
           <div className="relative rounded-3xl overflow-hidden bg-black aspect-[3/4] shadow-xl">
