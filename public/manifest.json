@@ -1,0 +1,17 @@
+{
+  "name": "FaceScan Security",
+  "short_name": "FaceScan",
+  "description": "Housing society security guard application.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#059669",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
