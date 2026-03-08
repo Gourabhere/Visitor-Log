@@ -1,0 +1,7 @@
+{
+  "name": "FACESCAN",
+  "description": "A sustainable minimalist application for housing society security guards to scan faces, register visitors, and track check-ins/check-outs.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

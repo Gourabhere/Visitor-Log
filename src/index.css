@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+body {
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+  background-color: #fafafa; /* zinc-50 */
+}
+
+/* Safe area padding for modern mobile browsers */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
